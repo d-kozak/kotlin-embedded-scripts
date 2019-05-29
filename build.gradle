@@ -25,6 +25,17 @@ repositories {
 }
 
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'io.dkozak.kotlin.embedded.scripts.MainKt'
+    }
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
 dependencies {
     compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 
